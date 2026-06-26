@@ -7,18 +7,23 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowLeft
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
@@ -26,6 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.tlw.composeplayground.projects.smartdashboard.component.SmartTextField
 import com.tlw.composeplayground.projects.smartdashboard.ui.theme.ComposePlaygroundTheme
+import com.tlw.composeplayground.projects.smartdashboard.ui.theme.Green40
 
 class SmartDashboardActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,6 +93,20 @@ class SmartDashboardActivity : ComponentActivity() {
                             Spacer(modifier = Modifier.height(20.dp))
                             SmartTextField(label = "Password", value = "") {
 
+                            }
+                            Spacer(modifier = Modifier.height(20.dp))
+                            Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                                Row(
+                                    modifier = Modifier.weight(1f),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Checkbox(
+                                        checked = true,
+                                        onCheckedChange = {},
+                                    )
+                                    Text("Remember me", color = Color.White)
+                                }
+                                Text("Forget password?", color = Green40)
                             }
                         }
                     }
