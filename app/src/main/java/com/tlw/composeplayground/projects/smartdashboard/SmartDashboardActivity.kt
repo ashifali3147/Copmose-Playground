@@ -17,7 +17,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowLeft
+import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -27,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.tlw.composeplayground.projects.smartdashboard.component.SmartTextField
 import com.tlw.composeplayground.projects.smartdashboard.ui.theme.ComposePlaygroundTheme
@@ -109,6 +112,21 @@ class SmartDashboardActivity : ComponentActivity() {
                                     Text("Remember me", color = Color.White)
                                 }
                                 Text("Forget password?", color = Green40)
+                            }
+                            Spacer(modifier = Modifier.height(20.dp))
+                            Button(
+                                modifier = Modifier.fillMaxWidth()
+                                    .height(55.dp),
+                                onClick = {}
+                            ) { Text("Create Account", fontWeight = FontWeight.Bold)}
+                            Spacer(modifier = Modifier.height(20.dp))
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                HorizontalDivider(modifier = Modifier.weight(1f))
+                                Text("Or Sign In With", color = Color.White, modifier = Modifier.padding(horizontal = 10.dp))
+                                HorizontalDivider(modifier = Modifier.weight(1f))
                             }
                         }
                     }
