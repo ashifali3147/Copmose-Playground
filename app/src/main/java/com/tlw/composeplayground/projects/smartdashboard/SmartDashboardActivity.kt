@@ -24,6 +24,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.tlw.composeplayground.projects.smartdashboard.component.SmartTextField
 import com.tlw.composeplayground.projects.smartdashboard.ui.theme.ComposePlaygroundTheme
 
 class SmartDashboardActivity : ComponentActivity() {
@@ -50,7 +51,7 @@ class SmartDashboardActivity : ComponentActivity() {
 
                     ) {
                         Column(
-                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 20.dp)
+                            modifier = Modifier.padding(horizontal = 20.dp, vertical = 20.dp)
                         ) {
                             Icon(
                                 modifier = Modifier
@@ -75,6 +76,18 @@ class SmartDashboardActivity : ComponentActivity() {
                                 color = Color.White,
                                 style = MaterialTheme.typography.bodyMedium
                             )
+                            Spacer(modifier = Modifier.height(30.dp))
+                            SmartTextField(label = "Name", value = "") {
+
+                            }
+                            Spacer(modifier = Modifier.height(20.dp))
+                            SmartTextField(label = "Email", value = "") {
+
+                            }
+                            Spacer(modifier = Modifier.height(20.dp))
+                            SmartTextField(label = "Password", value = "") {
+
+                            }
                         }
                     }
                 }
