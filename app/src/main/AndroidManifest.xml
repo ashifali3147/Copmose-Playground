@@ -12,7 +12,7 @@
         android:theme="@style/Theme.ComposePlayground">
         <activity
             android:name=".projects.smartdashboard.SmartDashboardActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/title_activity_smart_dashboard"
             android:theme="@style/Theme.ComposePlayground">
             <intent-filter>
