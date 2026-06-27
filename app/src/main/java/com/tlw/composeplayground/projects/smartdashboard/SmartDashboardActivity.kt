@@ -31,7 +31,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.tlw.composeplayground.R
 import com.tlw.composeplayground.projects.smartdashboard.component.SmartTextField
+import com.tlw.composeplayground.projects.smartdashboard.component.SocialButton
 import com.tlw.composeplayground.projects.smartdashboard.ui.theme.ComposePlaygroundTheme
 import com.tlw.composeplayground.projects.smartdashboard.ui.theme.Green40
 
@@ -115,19 +117,32 @@ class SmartDashboardActivity : ComponentActivity() {
                             }
                             Spacer(modifier = Modifier.height(20.dp))
                             Button(
-                                modifier = Modifier.fillMaxWidth()
-                                    .height(55.dp),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(50.dp),
                                 onClick = {}
-                            ) { Text("Create Account", fontWeight = FontWeight.Bold)}
+                            ) { Text("Create Account", fontWeight = FontWeight.Bold) }
                             Spacer(modifier = Modifier.height(20.dp))
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 HorizontalDivider(modifier = Modifier.weight(1f))
-                                Text("Or Sign In With", color = Color.White, modifier = Modifier.padding(horizontal = 10.dp))
+                                Text(
+                                    "Or Sign In With",
+                                    color = Color.White,
+                                    modifier = Modifier.padding(horizontal = 10.dp)
+                                )
                                 HorizontalDivider(modifier = Modifier.weight(1f))
                             }
+                            Spacer(modifier = Modifier.height(20.dp))
+                            SocialButton(
+                                icon = R.drawable.google,
+                                title = "Sign Up with Google"
+                            ) { }
+                            Spacer(modifier = Modifier.height(20.dp))
+                            SocialButton(icon = R.drawable.apple, title = "Sign Up with Apple") { }
+
                         }
                     }
                 }
