@@ -40,3 +40,5 @@ google-services.json
 # Android Profiling
 *.hprof
 
+# AI Tools
+CLAUDE.md
