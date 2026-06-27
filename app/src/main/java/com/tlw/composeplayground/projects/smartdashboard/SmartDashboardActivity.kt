@@ -29,6 +29,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -52,6 +54,7 @@ class SmartDashboardActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val isRemember by viewModel.isRemember.collectAsState()
             ComposePlaygroundTheme {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
@@ -120,7 +123,7 @@ class SmartDashboardActivity : ComponentActivity() {
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     Checkbox(
-                                        checked = viewModel.isRemember,
+                                        checked = isRemember,
                                         onCheckedChange = {viewModel.onRememberMeChange(it)},
                                     )
                                     Text("Remember me", color = Color.White)

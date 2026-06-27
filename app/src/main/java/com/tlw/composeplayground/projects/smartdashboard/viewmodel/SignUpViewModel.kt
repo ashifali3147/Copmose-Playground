@@ -4,6 +4,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class SignUpViewModel : ViewModel() {
     var name by mutableStateOf("")
@@ -24,10 +27,12 @@ class SignUpViewModel : ViewModel() {
     fun onPasswordChange(value: String) {
         password = value
     }
-    var isRemember by mutableStateOf(false)
-        private set
+
+    private val _isRemember = MutableStateFlow(false)
+
+    val isRemember: StateFlow<Boolean> = _isRemember.asStateFlow()
 
     fun onRememberMeChange(value: Boolean) {
-        isRemember = value
+        _isRemember.value = value
     }
 }
