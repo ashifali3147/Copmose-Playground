@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -43,8 +44,10 @@ import com.tlw.composeplayground.projects.smartdashboard.component.SmartTextFiel
 import com.tlw.composeplayground.projects.smartdashboard.component.SocialButton
 import com.tlw.composeplayground.projects.smartdashboard.ui.theme.ComposePlaygroundTheme
 import com.tlw.composeplayground.projects.smartdashboard.ui.theme.Green40
+import com.tlw.composeplayground.projects.smartdashboard.viewmodel.SignUpViewModel
 
 class SmartDashboardActivity : ComponentActivity() {
+    private val viewModel by viewModels<SignUpViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -96,16 +99,16 @@ class SmartDashboardActivity : ComponentActivity() {
                                 style = MaterialTheme.typography.bodyMedium
                             )
                             Spacer(modifier = Modifier.height(30.dp))
-                            SmartTextField(label = "Name", value = "") {
-
+                            SmartTextField(label = "Name", value = viewModel.name) {
+                                viewModel.onNameChange(it)
                             }
                             Spacer(modifier = Modifier.height(20.dp))
-                            SmartTextField(label = "Email", value = "") {
-
+                            SmartTextField(label = "Email", value = viewModel.email) {
+                                viewModel.onEmailChange(it)
                             }
                             Spacer(modifier = Modifier.height(20.dp))
-                            SmartTextField(label = "Password", value = "") {
-
+                            SmartTextField(label = "Password", value = viewModel.password) {
+                                viewModel.onPasswordChange(it)
                             }
                             Spacer(modifier = Modifier.height(20.dp))
                             Row(
@@ -117,8 +120,8 @@ class SmartDashboardActivity : ComponentActivity() {
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     Checkbox(
-                                        checked = true,
-                                        onCheckedChange = {},
+                                        checked = viewModel.isRemember,
+                                        onCheckedChange = {viewModel.onRememberMeChange(it)},
                                     )
                                     Text("Remember me", color = Color.White)
                                 }
