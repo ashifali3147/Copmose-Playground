@@ -14,10 +14,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowLeft
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -29,7 +33,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.tlw.composeplayground.R
 import com.tlw.composeplayground.projects.smartdashboard.component.SmartTextField
@@ -61,7 +68,9 @@ class SmartDashboardActivity : ComponentActivity() {
 
                     ) {
                         Column(
-                            modifier = Modifier.padding(horizontal = 20.dp, vertical = 20.dp)
+                            modifier = Modifier
+                                .padding(horizontal = 20.dp, vertical = 20.dp)
+                                .verticalScroll(rememberScrollState())
                         ) {
                             Icon(
                                 modifier = Modifier
@@ -76,7 +85,7 @@ class SmartDashboardActivity : ComponentActivity() {
                             )
                             Spacer(modifier = Modifier.height(20.dp))
                             Text(
-                                "Sign Up",
+                                "Sign up",
                                 color = Color.White,
                                 style = MaterialTheme.typography.headlineLarge
                             )
@@ -120,8 +129,10 @@ class SmartDashboardActivity : ComponentActivity() {
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .height(50.dp),
+                                shape = RoundedCornerShape(50),
+                                colors = ButtonDefaults.buttonColors(containerColor = Green40),
                                 onClick = {}
-                            ) { Text("Create Account", fontWeight = FontWeight.Bold) }
+                            ) { Text("Create Account", fontWeight = FontWeight.Bold, color = Color.Black) }
                             Spacer(modifier = Modifier.height(20.dp))
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
@@ -142,6 +153,17 @@ class SmartDashboardActivity : ComponentActivity() {
                             ) { }
                             Spacer(modifier = Modifier.height(20.dp))
                             SocialButton(icon = R.drawable.apple, title = "Sign Up with Apple") { }
+                            Spacer(modifier = Modifier.height(20.dp))
+                            Text(
+                                text = buildAnnotatedString {
+                                    append("Already have an account? ")
+                                    withStyle(SpanStyle(color = Green40)) {
+                                        append("Sign In")
+                                    }
+                                },
+                                color = Color.White,
+                                modifier = Modifier.align(Alignment.CenterHorizontally)
+                            )
 
                         }
                     }
