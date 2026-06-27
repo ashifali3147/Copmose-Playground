@@ -23,13 +23,11 @@ fun SmartTextField(modifier: Modifier = Modifier, label: String, value: String, 
             unfocusedContainerColor = Color(0xFF263131),
             unfocusedTextColor = Color.White,
             focusedTextColor = Color.White,
-            focusedLabelColor = Color.White,
-            unfocusedLabelColor = Color.White,
-            errorLabelColor = Color.Red,
+            unfocusedPlaceholderColor = Color(0xFF6B8080),
+            focusedPlaceholderColor = Color(0xFF6B8080),
             unfocusedBorderColor = Color(0xFF2D3335),
             focusedBorderColor = Color(0xFF2D3335),
             cursorColor = Color.White,
-            errorCursorColor = Color.Red,
         )
     )
 }

@@ -132,7 +132,7 @@ class SmartDashboardActivity : ComponentActivity() {
                                 shape = RoundedCornerShape(50),
                                 colors = ButtonDefaults.buttonColors(containerColor = Green40),
                                 onClick = {}
-                            ) { Text("Create Account", fontWeight = FontWeight.Bold, color = Color.Black) }
+                            ) { Text("Create Account", fontWeight = FontWeight.Bold, color = Color.White) }
                             Spacer(modifier = Modifier.height(20.dp))
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
