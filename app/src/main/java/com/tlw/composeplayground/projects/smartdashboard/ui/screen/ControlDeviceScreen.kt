@@ -1,6 +1,5 @@
 package com.tlw.composeplayground.projects.smartdashboard.ui.screen
 
-import android.R
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -28,6 +27,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -38,12 +41,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tlw.composeplayground.projects.smartdashboard.component.ChipGroup
 import com.tlw.composeplayground.projects.smartdashboard.component.InfoTile
+import com.tlw.composeplayground.projects.smartdashboard.model.getRoomFilterList
 import com.tlw.composeplayground.projects.smartdashboard.ui.theme.Green40
 import com.tlw.composeplayground.projects.smartdashboard.ui.theme.TileColor
 
 @Composable
 fun ControlDeviceScreen(innerPadding: PaddingValues) {
+    var filterList by remember { mutableStateOf(getRoomFilterList()) }
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -134,9 +140,21 @@ fun ControlDeviceScreen(innerPadding: PaddingValues) {
                             )
                         }
                         Spacer(modifier = Modifier.height(10.dp))
-                        Text("Cloudy", color = Color.White, style = MaterialTheme.typography.titleMedium)
-                        Text("Indoor humidity", color = Color.Gray, style = MaterialTheme.typography.bodyMedium)
-                        Text("Living Room", color = Color.White, style = MaterialTheme.typography.titleLarge)
+                        Text(
+                            "Cloudy",
+                            color = Color.White,
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                        Text(
+                            "Indoor humidity",
+                            color = Color.Gray,
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        Text(
+                            "Living Room",
+                            color = Color.White,
+                            style = MaterialTheme.typography.titleLarge
+                        )
                     }
                 }
                 Spacer(modifier = Modifier.width(10.dp))
@@ -144,6 +162,14 @@ fun ControlDeviceScreen(innerPadding: PaddingValues) {
                     InfoTile(heading = "Lite", info = "Total 5")
                     InfoTile(heading = "Service", info = "Total 20")
                     InfoTile(heading = "Active Device", info = "Total 6")
+                }
+            }
+
+            Spacer(modifier = Modifier.height(30.dp))
+
+            ChipGroup(filterList) { clicked ->
+                filterList = filterList.map {
+                    it.copy(isSelected = it.id == clicked.id)
                 }
             }
 
