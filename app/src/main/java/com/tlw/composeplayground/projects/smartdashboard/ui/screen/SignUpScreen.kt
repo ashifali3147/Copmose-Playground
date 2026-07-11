@@ -37,13 +37,16 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tlw.composeplayground.R
 import com.tlw.composeplayground.projects.smartdashboard.component.SmartTextField
 import com.tlw.composeplayground.projects.smartdashboard.component.SocialButton
 import com.tlw.composeplayground.projects.smartdashboard.ui.theme.Green40
+import com.tlw.composeplayground.projects.smartdashboard.viewmodel.SignUpViewModel
 
 @Composable
 fun SignUpScreen(innerPadding: PaddingValues) {
+    val viewModel: SignUpViewModel = viewModel()
     val isRemember by viewModel.isRemember.collectAsState()
     Box(
         modifier = Modifier
