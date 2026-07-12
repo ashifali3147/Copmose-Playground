@@ -36,7 +36,7 @@ import com.tlw.composeplayground.projects.smartdashboard.ui.theme.TileColor
 fun DeviceCard(
     modifier: Modifier = Modifier,
     device: RoomDeviceModel,
-    callBack: (value: Boolean) -> Unit
+    callBack: (value: RoomDeviceModel) -> Unit
 ) {
     Card(
         modifier = modifier,
@@ -73,7 +73,7 @@ fun DeviceCard(
                         uncheckedBorderColor = TileColor,
                     ),
                     checked = device.isEnable,
-                    onCheckedChange = { callBack(it) },
+                    onCheckedChange = { callBack(device) },
                     thumbContent = {
                         Icon(
                             imageVector = Icons.Filled.PowerSettingsNew,
