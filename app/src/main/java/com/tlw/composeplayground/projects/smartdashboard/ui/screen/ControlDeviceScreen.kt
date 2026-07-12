@@ -3,6 +3,7 @@ package com.tlw.composeplayground.projects.smartdashboard.ui.screen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -13,6 +14,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -42,14 +46,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tlw.composeplayground.projects.smartdashboard.component.ChipGroup
+import com.tlw.composeplayground.projects.smartdashboard.component.DeviceCard
 import com.tlw.composeplayground.projects.smartdashboard.component.InfoTile
+import com.tlw.composeplayground.projects.smartdashboard.model.getRoomDeviceList
 import com.tlw.composeplayground.projects.smartdashboard.model.getRoomFilterList
 import com.tlw.composeplayground.projects.smartdashboard.ui.theme.Green40
 import com.tlw.composeplayground.projects.smartdashboard.ui.theme.TileColor
+import kotlin.math.ceil
 
 @Composable
 fun ControlDeviceScreen(innerPadding: PaddingValues) {
     var filterList by remember { mutableStateOf(getRoomFilterList()) }
+    var deviceList by remember { mutableStateOf(getRoomDeviceList()) }
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -172,7 +180,39 @@ fun ControlDeviceScreen(innerPadding: PaddingValues) {
                     it.copy(isSelected = it.id == clicked.id)
                 }
             }
+            Spacer(modifier = Modifier.height(30.dp))
+            Row(modifier = Modifier.fillMaxWidth()) {
+                Text(modifier = Modifier.weight(1f), text = "Devices", color = Color.White)
+                Text(
+                    modifier = Modifier.weight(1f),
+                    text = "Turn on all",
+                    color = Green40,
+                    textAlign = TextAlign.End
+                )
+            }
+            Spacer(modifier = Modifier.height(30.dp))
 
+            val gridSpacing = 12.dp
+            BoxWithConstraints {
+                val itemSize = (maxWidth - gridSpacing) / 2
+                val rows = ceil(deviceList.size / 2f)
+                LazyVerticalGrid(
+                    modifier = Modifier.height(itemSize * rows + gridSpacing * (rows - 1)),
+                    columns = GridCells.Fixed(2),
+                    horizontalArrangement = Arrangement.spacedBy(gridSpacing),
+                    verticalArrangement = Arrangement.spacedBy(gridSpacing),
+                    userScrollEnabled = false
+                ) {
+                    items(items = deviceList) { item ->
+                        DeviceCard(modifier = Modifier.size(itemSize), item) { device ->
+                            deviceList = deviceList.map {
+                                it.copy(isEnable = if (it.id == device.id) !it.isEnable else it.isEnable)
+                            }
+
+                        }
+                    }
+                }
+            }
         }
     }
 
