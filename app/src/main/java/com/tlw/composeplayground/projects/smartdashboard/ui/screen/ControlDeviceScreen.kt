@@ -1,6 +1,7 @@
 package com.tlw.composeplayground.projects.smartdashboard.ui.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -58,6 +59,7 @@ import kotlin.math.ceil
 fun ControlDeviceScreen(innerPadding: PaddingValues) {
     var filterList by remember { mutableStateOf(getRoomFilterList()) }
     var deviceList by remember { mutableStateOf(getRoomDeviceList()) }
+    var isAllDeviceEnable by remember { mutableStateOf(deviceList.all { it.isEnable }) }
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -184,8 +186,15 @@ fun ControlDeviceScreen(innerPadding: PaddingValues) {
             Row(modifier = Modifier.fillMaxWidth()) {
                 Text(modifier = Modifier.weight(1f), text = "Devices", color = Color.White)
                 Text(
-                    modifier = Modifier.weight(1f),
-                    text = "Turn on all",
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable {
+                            isAllDeviceEnable = !isAllDeviceEnable
+                            deviceList = deviceList.map {
+                                it.copy(isEnable = isAllDeviceEnable)
+                            }
+                        },
+                    text = "Turn ${if (isAllDeviceEnable) "off" else "on"} all",
                     color = Green40,
                     textAlign = TextAlign.End
                 )
@@ -208,7 +217,7 @@ fun ControlDeviceScreen(innerPadding: PaddingValues) {
                             deviceList = deviceList.map {
                                 it.copy(isEnable = if (it.id == device.id) !it.isEnable else it.isEnable)
                             }
-
+                            isAllDeviceEnable = deviceList.all { it.isEnable }
                         }
                     }
                 }
