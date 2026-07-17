@@ -90,7 +90,10 @@ fun ControlDeviceScreen(innerPadding: PaddingValues, backStack: NavBackStack<Nav
                         .clip(CircleShape)
                         .background(
                             TileColor
-                        ),
+                        )
+                        .clickable {
+                            backStack.removeLastOrNull()
+                        },
                     imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowLeft,
                     contentDescription = null,
                     tint = Color.White
