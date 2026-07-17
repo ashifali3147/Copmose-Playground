@@ -38,14 +38,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavKey
 import com.tlw.composeplayground.R
 import com.tlw.composeplayground.projects.smartdashboard.component.SmartTextField
 import com.tlw.composeplayground.projects.smartdashboard.component.SocialButton
+import com.tlw.composeplayground.projects.smartdashboard.ui.navigation.Routes
 import com.tlw.composeplayground.projects.smartdashboard.ui.theme.Green40
 import com.tlw.composeplayground.projects.smartdashboard.viewmodel.SignUpViewModel
 
 @Composable
-fun SignUpScreen(innerPadding: PaddingValues) {
+fun SignUpScreen(innerPadding: PaddingValues, backStack: NavBackStack<NavKey>) {
     val viewModel: SignUpViewModel = viewModel()
     val isRemember by viewModel.isRemember.collectAsState()
     Box(
@@ -145,7 +148,9 @@ fun SignUpScreen(innerPadding: PaddingValues) {
             SocialButton(
                 icon = R.drawable.google,
                 title = "Sign Up with Google"
-            ) { }
+            ) {
+                backStack.add(Routes.DashBoardScreen)
+            }
             Spacer(modifier = Modifier.height(20.dp))
             SocialButton(icon = R.drawable.apple, title = "Sign Up with Apple") { }
             Spacer(modifier = Modifier.height(20.dp))

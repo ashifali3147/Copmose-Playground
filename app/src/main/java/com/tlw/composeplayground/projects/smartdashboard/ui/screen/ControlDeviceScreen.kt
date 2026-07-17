@@ -46,6 +46,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavKey
 import com.tlw.composeplayground.projects.smartdashboard.component.ChipGroup
 import com.tlw.composeplayground.projects.smartdashboard.component.DeviceCard
 import com.tlw.composeplayground.projects.smartdashboard.component.InfoTile
@@ -56,7 +58,7 @@ import com.tlw.composeplayground.projects.smartdashboard.ui.theme.TileColor
 import kotlin.math.ceil
 
 @Composable
-fun ControlDeviceScreen(innerPadding: PaddingValues) {
+fun ControlDeviceScreen(innerPadding: PaddingValues, backStack: NavBackStack<NavKey>) {
     var filterList by remember { mutableStateOf(getRoomFilterList()) }
     var deviceList by remember { mutableStateOf(getRoomDeviceList()) }
     var isAllDeviceEnable by remember { mutableStateOf(deviceList.all { it.isEnable }) }
